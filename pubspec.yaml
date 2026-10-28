@@ -1,0 +1,22 @@
+name: beam2sa
+description: Beam2SA - Collada (.dae) to GTA San Andreas RenderWare (.dff) converter in pure Dart.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  xml: ^6.5.0
+  file_picker: ^8.1.2
+  path: ^1.9.0
+  permission_handler: ^11.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
