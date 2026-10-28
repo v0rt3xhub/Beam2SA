@@ -33,6 +33,12 @@ jobs:
 
       - run: flutter pub get
 
+      - name: Patch plugins to compileSdk 36
+        run: |
+          CACHE="${PUB_CACHE:-$HOME/.pub-cache}"
+          find "$CACHE/hosted" \( -path "*/android/build.gradle" -o -path "*/android/build.gradle.kts" \) -print0 \
+            | xargs -0 sed -i -E 's/compileSdk(Version)? *=? *[0-9]+/compileSdk = 36/'
+
       - name: Build APK (arm64-v8a)
         run: flutter build apk --release --split-per-abi --target-platform android-arm64
 
@@ -60,6 +66,8 @@ jobs:
 
       - name: Build Windows
         run: flutter build windows --release
+        env:
+          CL: /D_SILENCE_EXPERIMENTAL_COROUTINE_DEPRECATION_WARNINGS
 
       - uses: actions/upload-artifact@v4
         with:
